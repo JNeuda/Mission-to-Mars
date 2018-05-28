@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Data!</a></p>
+
+        </div>
+
+            {% for x in mars_data%}
+
+            <div class="col-lg-4">
+
+            <h3>{{ x.news_title }} </h3>
+            {{ x.news_p }} 
+            {{ x.jpl_image_url }} 
+            {{ x.tweet_data }} 
+            {{ x.hemisphere1_title }} 
+            {{ x.hemisphere1_img }} 
+            {{ x.hemisphere2_title }} 
+            {{ x.hemisphere2_img }} 
+            {{ x.hemisphere3_title }} 
+            {{ x.hemisphere3_img }} 
+            {{ x.hemisphere4_title }} 
+            {{ x.hemisphere4_img }} 
+            
+            </div>
+
+            {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
