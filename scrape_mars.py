@@ -120,6 +120,9 @@ def scrape_table():
 # Mars Hemisperes
 # Visit the USGS Astrogeology site here to obtain high resolution images for each of Mar's hemispheres.You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image.Save both the image url string for the full resolution hemipshere image, and the Hemisphere title containing the hemisphere name. Use a Python dictionary to store the data using the keys img_url and title.Append the dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
 
+# Mars Hemisperes
+# Visit the USGS Astrogeology site here to obtain high resolution images for each of Mar's hemispheres.You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image.Save both the image url string for the full resolution hemipshere image, and the Hemisphere title containing the hemisphere name. Use a Python dictionary to store the data using the keys img_url and title.Append the dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
+
 def scrape_hemispheres():
     
     # Initialize browser
@@ -147,10 +150,18 @@ def scrape_hemispheres():
         browser.click_link_by_partial_text(text)
         
         #going to image page
-        browser.click_link_by_partial_href('.tif/full.jpg')
+        # browser.click_link_by_partial_href('.tif/full.jpg')
+        
+        # Get the current website url
+        url = browser.url
+    
+        # Scrape page with soup
+        html = browser.html
+        soup = BeautifulSoup(html, 'html.parser')
         
         #getting url and giving it a variable
-        img_url = browser.url
+        current_img = soup.find_all('div', class_="downloads")
+        img_url = current_img[0].find('li').find('a')['href']
     
         #create key and value for dictionary d
         d.update({'img_url': img_url,'title': text})
@@ -165,7 +176,6 @@ def scrape_hemispheres():
         print(text)
     
     return(hemisphere_image_urls)
-
 
 
 # def scrape():
